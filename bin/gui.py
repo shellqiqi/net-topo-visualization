@@ -50,7 +50,6 @@ class Application(tk.Frame):
         edges = set()
         try:
             network = list(ipaddress.IPv4Network(self.IPEntry.get() + '/' + self.MaskEntry.get()))
-            print(network)
 
             res, _ = traceroute(list(map(lambda x: str(x), network)))
 
@@ -67,8 +66,6 @@ class Application(tk.Frame):
                     tr_dict[r[0].dst] = {r[0].ttl: r[1].src}
                     help_dict[r[0].dst] = {r[1].src}
 
-            print(tr_dict)
-
             for ttl_dict in tr_dict.values():
                 last_src = 'localhost'
                 for ttl in sorted(ttl_dict.keys()):
@@ -79,7 +76,6 @@ class Application(tk.Frame):
             print(e)
             edges.add(('localhost', 'localhost'))
 
-        print(edges)
         return edges
 
 
