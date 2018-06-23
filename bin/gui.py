@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import ipaddress
-from random import random
 from scapy.layers.inet import traceroute
 import tkinter as tk
 import networkx as nx
@@ -43,8 +42,9 @@ class Application(tk.Frame):
         edges = self.trace_route()
         network_graph = nx.Graph()
         network_graph.add_edges_from(edges)
-        colors = [(random(), random(), random()) for _ in network_graph.nodes]
-        nx.draw(network_graph, node_color=colors, width=0.5, with_labels=True)
+        node_size = [float(network_graph.degree(v))*50 for v in network_graph]
+        node_color = [1-1/(1+float(network_graph.degree(v))) for v in network_graph]
+        nx.draw(network_graph, node_size=node_size, node_color=node_color, width=0.5, with_labels=True)
 
     def trace_route(self):
         edges = set()
