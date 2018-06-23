@@ -52,11 +52,15 @@ class Application(tk.Frame):
             network = list(ipaddress.IPv4Network(self.IPEntry.get() + '/' + self.MaskEntry.get()))
 
             res, _ = traceroute(list(map(lambda x: str(x), network)))
+            if not hasattr(self, 'res'):
+                self.res = res
+            else:
+                self.res = self.res + res
 
             tr_dict = dict()
             help_dict = dict()
 
-            for r in res:
+            for r in self.res:
                 if r[0].dst in tr_dict:
                     if r[1].src in help_dict[r[0].dst]:
                         continue
