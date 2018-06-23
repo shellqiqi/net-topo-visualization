@@ -16,6 +16,6 @@ Run python script `./bin/gui.py` then the very simple form will show up. Under l
 
 Fill the network and click the "Show topology" button, you will get a topology of the network.
 
-Here is a example to show network `123.123.123.0/30`
+Here is an example to show the network `123.123.123.0/30`
 
 ![topo](assets/topo.png)
